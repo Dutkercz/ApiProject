@@ -5,13 +5,7 @@ import com.medvoll.ApiProject.DTO.MedicoDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
-@EqualsAndHashCode(of = "id")
-@Table(name = "medicos")
-@Entity
+@Getter @AllArgsConstructor @ToString @EqualsAndHashCode(of = "id") @Table(name = "medicos") @Entity
 public class Medico {
 
     @Id
@@ -38,4 +32,5 @@ public class Medico {
         this.endereco = new Endereco(dados.endereco());
         this.especialidade = dados.especialidade();
     }
+
 }

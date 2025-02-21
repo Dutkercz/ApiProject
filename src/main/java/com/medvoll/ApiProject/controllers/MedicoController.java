@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/medicos")
@@ -22,5 +23,12 @@ public class MedicoController {
         medicoRepositorie.save(new Medico(dados));
     }
 
+    @GetMapping
+    @Transactional
+    public List<MedicoListagemDTO> showAll (){
+        return medicoRepositorie.findAll()
+                .stream()
+                .map(MedicoListagemDTO::new).collect(Collectors.toList());
+    }
 
 }
