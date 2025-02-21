@@ -1,8 +1,10 @@
 package com.medvoll.ApiProject.entities;
 
+import com.medvoll.ApiProject.entities.DTO.MedicoUpdateDTO;
 import com.medvoll.ApiProject.entities.enums.Especialidade;
 import com.medvoll.ApiProject.entities.DTO.MedicoDTO;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.*;
 
 @Entity
@@ -26,6 +28,8 @@ public class Medico {
 
     private String crm;
 
+    private Boolean ativo;
+
     @Enumerated(EnumType.STRING)
     private Especialidade especialidade;
 
@@ -39,6 +43,18 @@ public class Medico {
         this.crm = dados.crm();
         this.endereco = new Endereco(dados.endereco());
         this.especialidade = dados.especialidade();
+        this.ativo = true;
     }
 
+    public void update(@Valid MedicoUpdateDTO dados) {
+        if(dados.nome() != null) {
+            this.nome = dados.nome();
+        }
+        if(dados.telefone() != null) {
+            this.telefone = dados.nome();
+        }
+        if(dados.endereco() != null) {
+            this.endereco.updateEndereco(dados.endereco());
+        }
+    }
 }

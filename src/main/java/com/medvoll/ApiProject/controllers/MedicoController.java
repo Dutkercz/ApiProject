@@ -2,6 +2,7 @@ package com.medvoll.ApiProject.controllers;
 
 import com.medvoll.ApiProject.entities.DTO.MedicoDTO;
 import com.medvoll.ApiProject.entities.DTO.MedicoListagemDTO;
+import com.medvoll.ApiProject.entities.DTO.MedicoUpdateDTO;
 import com.medvoll.ApiProject.entities.Medico;
 import com.medvoll.ApiProject.repositories.MedicoRepositorie;
 import jakarta.transaction.Transactional;
@@ -28,8 +29,22 @@ public class MedicoController {
 
     @GetMapping
     @Transactional
-    public Page<MedicoListagemDTO> showAll (@PageableDefault(sort = "nome") Pageable paginacao){
-        return medicoRepositorie.findAll(paginacao).map(MedicoListagemDTO::new);
+    public Page<MedicoListagemDTO> showAll (Pageable paginacao){
+        return medicoRepositorie.findAllByAtivoTrue(paginacao).map(MedicoListagemDTO::new);
+    }
+
+    @PutMapping
+    @Transactional
+    public void update (@RequestBody @Valid MedicoUpdateDTO dados){
+        Medico medico = medicoRepositorie.getReferenceById(dados.id());
+        medico.update(dados);
+    }
+
+    @DeleteMapping(value = "{id}")
+    @Transactional
+    public void delete (@PathVariable Long id){
+        Medico medico = medicoRepositorie.getReferenceById(id);
+        medico.setAtivo(false);
     }
 
 }
