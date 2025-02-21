@@ -1,4 +1,4 @@
-package com.medvoll.ApiProject.enums;
+package com.medvoll.ApiProject.entities.enums;
 
 public enum Especialidade {
     ORTOPEDIA,

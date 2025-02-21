@@ -1,13 +1,14 @@
 package com.medvoll.ApiProject.controllers;
 
 import com.medvoll.ApiProject.entities.Medico;
-import com.medvoll.ApiProject.records.DadosCadastroMedico;
+import com.medvoll.ApiProject.DTO.MedicoDTO;
 import com.medvoll.ApiProject.repositories.MedicoRepositorie;
+import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/medicos")
@@ -16,8 +17,10 @@ public class MedicoController {
     private MedicoRepositorie medicoRepositorie;
 
     @PostMapping
-    public Medico registration(@RequestBody DadosCadastroMedico dados){
+    @Transactional
+    public void registration(@RequestBody @Valid MedicoDTO dados){
         medicoRepositorie.save(new Medico(dados));
     }
+
 
 }

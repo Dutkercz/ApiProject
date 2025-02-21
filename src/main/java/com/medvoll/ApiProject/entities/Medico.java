@@ -1,7 +1,7 @@
 package com.medvoll.ApiProject.entities;
 
-import com.medvoll.ApiProject.enums.Especialidade;
-import com.medvoll.ApiProject.records.DadosCadastroMedico;
+import com.medvoll.ApiProject.entities.enums.Especialidade;
+import com.medvoll.ApiProject.DTO.MedicoDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,6 +11,7 @@ import lombok.*;
 @ToString
 @EqualsAndHashCode(of = "id")
 @Table(name = "medicos")
+@Entity
 public class Medico {
 
     @Id
@@ -19,19 +20,22 @@ public class Medico {
 
     private String nome;
     private String email;
+    private String telefone;
     private String crm;
     @Enumerated(EnumType.STRING)
     private Especialidade especialidade;
     @Embedded
     private Endereco endereco;
 
+    public Medico() {
+    }
 
-    public Medico(DadosCadastroMedico dados) {
+    public Medico(MedicoDTO dados) {
         this.nome = dados.nome();
-        email = dados.email();
-        crm = dados.crm();
-        endereco = new Endereco(dados.endereco());
-
-
+        this.email = dados.email();
+        this.telefone = dados.telefone();
+        this.crm = dados.crm();
+        this.endereco = new Endereco(dados.endereco());
+        this.especialidade = dados.especialidade();
     }
 }
