@@ -1,18 +1,37 @@
 package com.medvoll.ApiProject.entities;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.medvoll.ApiProject.enums.Especialidade;
+import com.medvoll.ApiProject.records.DadosCadastroMedico;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Getter
-@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(of = "id")
+@Table(name = "medicos")
 public class Medico {
 
-    private String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String nome;
     private String email;
-    private String phone;
     private String crm;
+    @Enumerated(EnumType.STRING)
+    private Especialidade especialidade;
+    @Embedded
+    private Endereco endereco;
+
+
+    public Medico(DadosCadastroMedico dados) {
+        this.nome = dados.nome();
+        email = dados.email();
+        crm = dados.crm();
+        endereco = new Endereco(dados.endereco());
+
+
+    }
 }
