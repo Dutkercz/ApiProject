@@ -1,7 +1,8 @@
 package com.medvoll.ApiProject.controllers;
 
-import com.medvoll.ApiProject.entities.Medico;
 import com.medvoll.ApiProject.entities.DTO.MedicoDTO;
+import com.medvoll.ApiProject.entities.DTO.MedicoListagemDTO;
+import com.medvoll.ApiProject.entities.Medico;
 import com.medvoll.ApiProject.repositories.MedicoRepositorie;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
