@@ -1,4 +1,4 @@
-package com.medvoll.ApiProject.DTO;
+package com.medvoll.ApiProject.entities.DTO;
 
 import com.medvoll.ApiProject.entities.enums.Especialidade;
 import jakarta.validation.Valid;

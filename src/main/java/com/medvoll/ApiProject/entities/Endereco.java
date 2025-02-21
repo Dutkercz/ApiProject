@@ -1,6 +1,6 @@
 package com.medvoll.ApiProject.entities;
 
-import com.medvoll.ApiProject.DTO.EnderecoDTO;
+import com.medvoll.ApiProject.entities.DTO.EnderecoDTO;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,10 +19,6 @@ public class Endereco {
     private String complemento;
     private String uf;
     private String cidade;
-
-
-    public Endereco() {
-    }
 
     public Endereco(EnderecoDTO endereco) {
         this.logradouro = endereco.logradouro();

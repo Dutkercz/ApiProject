@@ -1,4 +1,4 @@
-package com.medvoll.ApiProject.DTO;
+package com.medvoll.ApiProject.entities.DTO;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

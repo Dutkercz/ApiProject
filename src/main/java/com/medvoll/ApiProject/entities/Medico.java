@@ -1,11 +1,17 @@
 package com.medvoll.ApiProject.entities;
 
 import com.medvoll.ApiProject.entities.enums.Especialidade;
-import com.medvoll.ApiProject.DTO.MedicoDTO;
+import com.medvoll.ApiProject.entities.DTO.MedicoDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Getter @AllArgsConstructor @ToString @EqualsAndHashCode(of = "id") @Table(name = "medicos") @Entity
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = "id")
+@Table(name = "medicos")
 public class Medico {
 
     @Id
@@ -13,16 +19,18 @@ public class Medico {
     private Long id;
 
     private String nome;
+
     private String email;
+
     private String telefone;
+
     private String crm;
+
     @Enumerated(EnumType.STRING)
     private Especialidade especialidade;
+
     @Embedded
     private Endereco endereco;
-
-    public Medico() {
-    }
 
     public Medico(MedicoDTO dados) {
         this.nome = dados.nome();
