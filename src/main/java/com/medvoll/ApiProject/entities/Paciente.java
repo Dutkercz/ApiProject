@@ -1,6 +1,8 @@
 package com.medvoll.ApiProject.entities;
 
 
+import com.medvoll.ApiProject.entities.DTO.MedicoDTO;
+import com.medvoll.ApiProject.entities.DTO.PacienteDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,7 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-@Table(name = "paciente")
+@Table(name = "pacientes")
 public class Paciente {
 
     @Id
@@ -21,8 +23,16 @@ public class Paciente {
     private String telefone;
 
     @Embedded
-    private Endereco endereço;
+    private Endereco endereco;
 
     private Boolean ativo;
+
+    public Paciente(PacienteDTO dados) {
+        this.nome = dados.nome();
+        this.email = dados.email();
+        this.telefone = dados.telefone();
+        this.endereco = new Endereco(dados.endereco());
+        this.ativo = true;
+    }
 
 }

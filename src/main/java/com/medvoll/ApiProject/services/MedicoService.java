@@ -1,8 +1,6 @@
 package com.medvoll.ApiProject.services;
 
-import com.medvoll.ApiProject.entities.DTO.EnderecoDTO;
 import com.medvoll.ApiProject.entities.DTO.MedicoUpdateDTO;
-import com.medvoll.ApiProject.entities.Endereco;
 import com.medvoll.ApiProject.entities.Medico;
 import com.medvoll.ApiProject.repositories.MedicoRepositorie;
 import jakarta.validation.Valid;
