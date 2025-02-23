@@ -33,10 +33,9 @@ public class MedicoController {
         return medicoRepositorie.findAllByAtivoTrue(paginacao).map(MedicoListagemDTO::new);
     }
 
-    @PutMapping
+    @PutMapping("/update")
     @Transactional
     public void update (@RequestBody @Valid MedicoUpdateDTO dados){
-        Medico medico = medicoRepositorie.getReferenceById(dados.id());
         medicoService.update(dados);
     }
 

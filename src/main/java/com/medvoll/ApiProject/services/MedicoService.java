@@ -1,5 +1,6 @@
 package com.medvoll.ApiProject.services;
 
+import com.medvoll.ApiProject.entities.DTO.EnderecoDTO;
 import com.medvoll.ApiProject.entities.DTO.MedicoUpdateDTO;
 import com.medvoll.ApiProject.entities.Endereco;
 import com.medvoll.ApiProject.entities.Medico;
@@ -12,22 +13,23 @@ import org.springframework.stereotype.Service;
 public class MedicoService {
     @Autowired
     private MedicoRepositorie medicoRepositorie;
-    private Medico medico;
-    private Endereco endereco;
 
-    public void findById(Long id){
-       medico = medicoRepositorie.getReferenceById(id);
+
+    public Medico findById(Long id){
+       return medicoRepositorie.getReferenceById(id);
     }
 
+
     public void update(@Valid MedicoUpdateDTO dados) {
+        Medico medico = findById(dados.id());
         if(dados.nome() != null) {
             medico.setNome(dados.nome());
         }
         if(dados.telefone() != null) {
-            medico.setTelefone(dados.nome());
+            medico.setTelefone(dados.telefone());
         }
         if(dados.endereco() != null) {
-            medico.setEndereco(endereco.updateEndereco(dados.endereco()));
+            medico.setEndereco(dados.endereco());
         }
     }
 }
