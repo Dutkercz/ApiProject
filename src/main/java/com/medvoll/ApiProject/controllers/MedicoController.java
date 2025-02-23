@@ -1,5 +1,6 @@
 package com.medvoll.ApiProject.controllers;
 
+import com.medvoll.ApiProject.services.MedicoService;
 import com.medvoll.ApiProject.entities.DTO.MedicoDTO;
 import com.medvoll.ApiProject.entities.DTO.MedicoListagemDTO;
 import com.medvoll.ApiProject.entities.DTO.MedicoUpdateDTO;
@@ -10,16 +11,15 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/medicos")
 public class MedicoController {
     @Autowired
     private MedicoRepositorie medicoRepositorie;
+    @Autowired
+    private MedicoService medicoService;
 
     @PostMapping
     @Transactional
@@ -37,7 +37,7 @@ public class MedicoController {
     @Transactional
     public void update (@RequestBody @Valid MedicoUpdateDTO dados){
         Medico medico = medicoRepositorie.getReferenceById(dados.id());
-        medico.update(dados);
+        medicoService.update(dados);
     }
 
     @DeleteMapping(value = "{id}")

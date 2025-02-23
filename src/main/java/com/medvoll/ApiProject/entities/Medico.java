@@ -46,15 +46,4 @@ public class Medico {
         this.ativo = true;
     }
 
-    public void update(@Valid MedicoUpdateDTO dados) {
-        if(dados.nome() != null) {
-            this.nome = dados.nome();
-        }
-        if(dados.telefone() != null) {
-            this.telefone = dados.nome();
-        }
-        if(dados.endereco() != null) {
-            this.endereco.updateEndereco(dados.endereco());
-        }
-    }
 }
