@@ -2,6 +2,7 @@ package com.medvoll.ApiProject.controllers;
 
 import com.medvoll.ApiProject.entities.DTO.PacienteDTO;
 import com.medvoll.ApiProject.entities.DTO.PacienteListagemDTO;
+import com.medvoll.ApiProject.entities.DTO.PacienteUpdateDTO;
 import com.medvoll.ApiProject.entities.Paciente;
 import com.medvoll.ApiProject.services.PacienteService;
 import jakarta.validation.Valid;
@@ -35,4 +36,11 @@ public class PacienteController {
     public void inactivatePaciente (@PathVariable Long id){
         pacienteService.inactivatePaciente(id);
     }
+
+    @PutMapping()
+    public void updatePaciente (@RequestBody @Valid PacienteUpdateDTO pacienteDados){
+        pacienteService.updatePaciente(pacienteDados);
+
+    }
+
 }

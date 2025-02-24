@@ -5,6 +5,7 @@ import com.medvoll.ApiProject.entities.Endereco;
 public record PacienteListagemDTO(
         String name,
         Endereco endereco,
-        String telefone
+        String telefone,
+        String email
 ) {
 }

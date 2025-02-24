@@ -2,6 +2,7 @@ package com.medvoll.ApiProject.services;
 
 import com.medvoll.ApiProject.entities.DTO.PacienteDTO;
 import com.medvoll.ApiProject.entities.DTO.PacienteListagemDTO;
+import com.medvoll.ApiProject.entities.DTO.PacienteUpdateDTO;
 import com.medvoll.ApiProject.entities.Paciente;
 import com.medvoll.ApiProject.repositories.PacienteRespository;
 import jakarta.persistence.EntityNotFoundException;
@@ -11,9 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PacienteService {
@@ -29,17 +27,35 @@ public class PacienteService {
         Paciente paciente = pacienteRespository.findByIdAndAtivoTrue(id).
                 orElseThrow(() -> new EntityNotFoundException("Paciente não encontrado. "));
         return new PacienteListagemDTO(paciente.getNome(), paciente.getEndereco(),
-                paciente.getTelefone());
+                paciente.getTelefone(), paciente.getEmail());
     }
 
     public Page<PacienteListagemDTO> findAll(Pageable pageable) {
         Page<Paciente> pacientes = pacienteRespository.findAllByAtivoTrue(pageable);
-        return pacientes.map(x -> new PacienteListagemDTO(x.getNome(), x.getEndereco(), x.getTelefone()));
+        return pacientes.map(x -> new PacienteListagemDTO(x.getNome(), x.getEndereco(), x.getTelefone(), x.getEmail()));
     }
 
     @Transactional
     public void inactivatePaciente(Long id) {
         Paciente paciente = pacienteRespository.getReferenceById(id);
         paciente.setInactive();
+    }
+
+    @Transactional
+    public void updatePaciente(@Valid PacienteUpdateDTO pacienteDados) {
+        Paciente paciente = pacienteRespository.getReferenceById(pacienteDados.id());
+
+        if(pacienteDados.nome() != null) {
+            paciente.setNome(pacienteDados.nome());
+        }
+        if(pacienteDados.telefone() != null) {
+            paciente.setTelefone(pacienteDados.telefone());
+        }
+        if(pacienteDados.email() != null){
+            paciente.setEmail(pacienteDados.email());
+        }
+        if(pacienteDados.endereco() != null) {
+            paciente.setEndereco(pacienteDados.endereco());
+        }
     }
 }

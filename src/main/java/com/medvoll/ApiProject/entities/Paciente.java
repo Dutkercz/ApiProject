@@ -18,12 +18,16 @@ public class Paciente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Setter
     private String nome;
+    @Setter
     private String email;
+    @Setter
     private String telefone;
     private String cpf;
 
     @Embedded
+    @Setter
     private Endereco endereco;
 
     private Boolean ativo;
