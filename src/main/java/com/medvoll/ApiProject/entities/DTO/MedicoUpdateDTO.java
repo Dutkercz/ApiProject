@@ -10,7 +10,6 @@ public record MedicoUpdateDTO(
         Long id,
         @NotBlank
         String nome,
-
         String telefone,
         @NotNull
         Endereco endereco,
