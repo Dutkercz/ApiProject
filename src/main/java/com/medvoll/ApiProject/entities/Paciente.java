@@ -37,4 +37,7 @@ public class Paciente {
         this.ativo = true;
     }
 
+    public void setInactive() {
+        this.ativo = false;
+    }
 }

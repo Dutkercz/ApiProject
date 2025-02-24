@@ -26,4 +26,13 @@ public class PacienteController {
     public Page<PacienteListagemDTO> ListAllPacientes (Pageable pageable){
         return pacienteService.findAll(pageable);
     }
+    @GetMapping("/{id}")
+    public PacienteListagemDTO findById (@PathVariable Long id){
+        return pacienteService.findById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void inactivatePaciente (@PathVariable Long id){
+        pacienteService.inactivatePaciente(id);
+    }
 }
