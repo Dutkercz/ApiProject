@@ -18,7 +18,7 @@ public class MedicoService {
     }
 
 
-    public void update(@Valid MedicoUpdateDTO dados) {
+    public Medico update(@Valid MedicoUpdateDTO dados) {
         Medico medico = findById(dados.id());
         if(dados.nome() != null) {
             medico.setNome(dados.nome());
@@ -29,5 +29,6 @@ public class MedicoService {
         if(dados.endereco() != null) {
             medico.setEndereco(dados.endereco());
         }
+        return medico;
     }
 }

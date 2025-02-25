@@ -8,10 +8,8 @@ import jakarta.validation.constraints.NotNull;
 public record MedicoUpdateDTO(
         @NotNull
         Long id,
-        @NotBlank
         String nome,
         String telefone,
-        @NotNull
         Endereco endereco,
 
         Especialidade especialidade
