@@ -4,7 +4,7 @@ import com.medvoll.ApiProject.entities.DTO.MedicoDTO;
 import com.medvoll.ApiProject.entities.DTO.MedicoListagemDTO;
 import com.medvoll.ApiProject.entities.DTO.MedicoUpdateDTO;
 import com.medvoll.ApiProject.entities.Medico;
-import com.medvoll.ApiProject.repositories.MedicoRepositorie;
+import com.medvoll.ApiProject.repositories.MedicoRepository;
 import com.medvoll.ApiProject.services.MedicoService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -19,7 +19,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RequestMapping(value = "/medicos")
 public class MedicoController {
     @Autowired
-    private MedicoRepositorie medicoRepositorie;
+    private MedicoRepository medicoRepository;
     @Autowired
     private MedicoService medicoService;
 
@@ -28,7 +28,7 @@ public class MedicoController {
     public ResponseEntity<MedicoListagemDTO> registrationMedico (@RequestBody @Valid MedicoDTO dados,
                                                                  UriComponentsBuilder builder){
         Medico medico = new Medico(dados);
-        medicoRepositorie.save(medico);
+        medicoRepository.save(medico);
         var uri = builder.path("/medicos/{id}").buildAndExpand(medico.getId()).toUri();
         return ResponseEntity.created(uri).body(new MedicoListagemDTO(medico));
     }
@@ -36,11 +36,11 @@ public class MedicoController {
     @GetMapping
     @Transactional
     public Page<MedicoListagemDTO> showAllMedicos (Pageable paginacao){
-        return medicoRepositorie.findAllByAtivoTrue(paginacao).map(MedicoListagemDTO::new);
+        return medicoRepository.findAllByAtivoTrue(paginacao).map(MedicoListagemDTO::new);
     }
     @GetMapping("/{id}")
     public ResponseEntity<MedicoListagemDTO> getMedico (@PathVariable Long id){
-        Medico medico = medicoRepositorie.getReferenceById(id);
+        Medico medico = medicoRepository.getReferenceById(id);
         return ResponseEntity.ok().body(new MedicoListagemDTO(medico));
     }
 
@@ -54,7 +54,7 @@ public class MedicoController {
     @DeleteMapping(value = "{id}")
     @Transactional
     public ResponseEntity<Medico> inactivateMedico (@PathVariable Long id){
-        Medico medico = medicoRepositorie.getReferenceById(id);
+        Medico medico = medicoRepository.getReferenceById(id);
         medico.setAtivo(false);
         return ResponseEntity.noContent().build();
     }

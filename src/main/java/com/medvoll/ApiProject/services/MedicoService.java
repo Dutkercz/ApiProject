@@ -2,7 +2,7 @@ package com.medvoll.ApiProject.services;
 
 import com.medvoll.ApiProject.entities.DTO.MedicoUpdateDTO;
 import com.medvoll.ApiProject.entities.Medico;
-import com.medvoll.ApiProject.repositories.MedicoRepositorie;
+import com.medvoll.ApiProject.repositories.MedicoRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class MedicoService {
     @Autowired
-    private MedicoRepositorie medicoRepositorie;
+    private MedicoRepository medicoRepository;
 
 
     public Medico findById(Long id){
-       return medicoRepositorie.getReferenceById(id);
+       return medicoRepository.getReferenceById(id);
     }
 
 
