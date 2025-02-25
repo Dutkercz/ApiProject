@@ -1,11 +1,11 @@
 package com.medvoll.ApiProject.controllers;
 
-import com.medvoll.ApiProject.services.MedicoService;
 import com.medvoll.ApiProject.entities.DTO.MedicoDTO;
 import com.medvoll.ApiProject.entities.DTO.MedicoListagemDTO;
 import com.medvoll.ApiProject.entities.DTO.MedicoUpdateDTO;
 import com.medvoll.ApiProject.entities.Medico;
 import com.medvoll.ApiProject.repositories.MedicoRepositorie;
+import com.medvoll.ApiProject.services.MedicoService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
@@ -26,7 +25,8 @@ public class MedicoController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<MedicoListagemDTO> registrationMedico (@RequestBody @Valid MedicoDTO dados, UriComponentsBuilder builder){
+    public ResponseEntity<MedicoListagemDTO> registrationMedico (@RequestBody @Valid MedicoDTO dados,
+                                                                 UriComponentsBuilder builder){
         Medico medico = new Medico(dados);
         medicoRepositorie.save(medico);
         var uri = builder.path("/medicos/{id}").buildAndExpand(medico.getId()).toUri();

@@ -42,7 +42,7 @@ public class PacienteService {
     }
 
     @Transactional
-    public void updatePaciente(@Valid PacienteUpdateDTO pacienteDados) {
+    public Paciente updatePaciente(@Valid PacienteUpdateDTO pacienteDados) {
         Paciente paciente = pacienteRespository.getReferenceById(pacienteDados.id());
 
         if(pacienteDados.nome() != null) {
@@ -57,5 +57,6 @@ public class PacienteService {
         if(pacienteDados.endereco() != null) {
             paciente.setEndereco(pacienteDados.endereco());
         }
+        return paciente;
     }
 }

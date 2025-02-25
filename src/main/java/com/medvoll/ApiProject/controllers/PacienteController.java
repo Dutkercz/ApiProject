@@ -1,5 +1,6 @@
 package com.medvoll.ApiProject.controllers;
 
+import com.medvoll.ApiProject.entities.DTO.MedicoListagemDTO;
 import com.medvoll.ApiProject.entities.DTO.PacienteDTO;
 import com.medvoll.ApiProject.entities.DTO.PacienteListagemDTO;
 import com.medvoll.ApiProject.entities.DTO.PacienteUpdateDTO;
@@ -10,7 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/pacientes")
@@ -19,27 +24,33 @@ public class PacienteController {
     PacienteService pacienteService;
 
     @PostMapping
-    public void registration (@RequestBody @Valid PacienteDTO paciente){
-        pacienteService.save(paciente);
+    public ResponseEntity<PacienteListagemDTO> registration (@RequestBody @Valid PacienteDTO dadosPaciente,
+                                                             UriComponentsBuilder builder){
+        Paciente paciente = new Paciente(dadosPaciente);
+        pacienteService.save(dadosPaciente);
+        URI uri = builder.path("/pacientes/{id}").buildAndExpand(paciente.getId()).toUri();
+        return ResponseEntity.created(uri).body(new PacienteListagemDTO(paciente));
     }
 
-    @GetMapping()
-    public Page<PacienteListagemDTO> ListAllPacientes (Pageable pageable){
-        return pacienteService.findAll(pageable);
+    @GetMapping("/all")
+    public ResponseEntity<Page<PacienteListagemDTO>> ListAllPacientes (Pageable pageable){
+        return ResponseEntity.ok(pacienteService.findAll(pageable));
     }
     @GetMapping("/{id}")
-    public PacienteListagemDTO findById (@PathVariable Long id){
-        return pacienteService.findById(id);
+    public ResponseEntity<PacienteListagemDTO> findById (@PathVariable Long id){
+        return ResponseEntity.ok().body(pacienteService.findById(id));
     }
 
     @DeleteMapping("/{id}")
-    public void inactivatePaciente (@PathVariable Long id){
+    public ResponseEntity<Paciente> inactivatePaciente (@PathVariable Long id){
         pacienteService.inactivatePaciente(id);
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping()
-    public void updatePaciente (@RequestBody @Valid PacienteUpdateDTO pacienteDados){
-        pacienteService.updatePaciente(pacienteDados);
+    public ResponseEntity<PacienteListagemDTO> updatePaciente (@RequestBody @Valid PacienteUpdateDTO pacienteDados){
+        var paciente = pacienteService.updatePaciente(pacienteDados);
+        return ResponseEntity.ok(new PacienteListagemDTO(paciente));
 
     }
 
