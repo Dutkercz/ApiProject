@@ -22,7 +22,8 @@ public class AutenticacaoUsuarioController {
     @PostMapping
     public ResponseEntity login(@RequestBody @Valid AutenticacaoUsuarioDTO dados){
         var token = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
-       var athentication = manager.authenticate(token);
-       return ResponseEntity.ok().build();
+        var athentication = manager.authenticate(token);
+
+        return ResponseEntity.ok().build();
     }
 }
