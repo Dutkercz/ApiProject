@@ -2,7 +2,7 @@ package com.medvoll.ApiProject.controllers;
 
 import com.medvoll.ApiProject.entities.DTO.AutenticacaoUsuarioDTO;
 import com.medvoll.ApiProject.entities.usuarios.Usuario;
-import com.medvoll.ApiProject.infra.TokenJWTDTO;
+import com.medvoll.ApiProject.infra.security.TokenJWTDTO;
 import com.medvoll.ApiProject.services.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
