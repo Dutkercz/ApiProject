@@ -17,7 +17,6 @@ public class Consulta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDateTime data;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
@@ -26,5 +25,7 @@ public class Consulta {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn
     private Paciente paciente;
+
+    private LocalDateTime data;
 
 }
