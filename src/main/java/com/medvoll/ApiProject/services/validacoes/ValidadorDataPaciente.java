@@ -13,10 +13,16 @@ public class ValidadorDataPaciente implements ValidadorAgendamentoDeConsultas {
     private PacienteRespository pacienteRespository;
 
     public void validar(ConsultaDadosDTO dadosDTO){
-        var data = dadosDTO.data().getDayOfYear();
-        var paciente = pacienteRespository.getReferenceById(dadosDTO.idPaciente());
-        var dataUltimaConsultaPaciente = paciente.getConsultas().getLast().getData().getDayOfYear();
-        if (data == dataUltimaConsultaPaciente){
+        System.out.println("Consulta Data Paciente");
+        var consultasPaciente = pacienteRespository.getReferenceById(dadosDTO.idPaciente()).getConsultas();
+        if (consultasPaciente.isEmpty()){
+            System.out.println("Saindo consulta paciente data");
+            return;
+        }
+
+        var dataConsultaAtual = dadosDTO.data();
+        var ultimaConsultaPaciente = consultasPaciente.getLast().getData();
+        if (dataConsultaAtual.equals(ultimaConsultaPaciente)){
             throw new ValidacaoException("Já existe uma consulta para este paciente na data selecionada");
         }
 

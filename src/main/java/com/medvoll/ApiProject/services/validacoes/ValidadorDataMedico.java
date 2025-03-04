@@ -13,12 +13,18 @@ public class ValidadorDataMedico implements ValidadorAgendamentoDeConsultas{
     private MedicoRepository medicoRepository;
 
     public void validar(ConsultaDadosDTO dadosDTO){
-        var medico = medicoRepository.getReferenceById(dadosDTO.idMedico());
-        var dataConsulta = dadosDTO.data();
-        var dataUltimaConsultaDoMedico = medico.getConsultas().getLast().getData();
-        if (dataConsulta == dataUltimaConsultaDoMedico ){
-            throw new ValidacaoException("Data da consulta indiponível para este médico.");
+        System.out.println("Consulta Data Medico");
 
+        var consultas = medicoRepository.getReferenceById(dadosDTO.idMedico()).getConsultas();
+        if(consultas.isEmpty()){
+            System.out.println("Saindo consulta medico data");
+            return;
+        }
+
+        var dataConsulta = dadosDTO.data();
+        var dataUltimaConsultaDoMedico = consultas.getLast().getData();
+        if (dataConsulta.equals(dataUltimaConsultaDoMedico) ){
+            throw new ValidacaoException("Data da consulta indiponível para este médico.");
         }
     }
 }

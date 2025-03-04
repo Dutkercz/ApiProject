@@ -13,11 +13,11 @@ public class ValidadorPacienteAtivo implements ValidadorAgendamentoDeConsultas{
     private PacienteRespository pacienteRespository;
 
     public void validar(ConsultaDadosDTO dadosDTO){
-        var paciente = pacienteRespository.findByIdAndAtivo(dadosDTO.idPaciente(), true);
-        System.out.println(paciente);
-        if(paciente.get().getAtivo() == false){
-            throw new ValidacaoException("Paciente não está ativo.");
-        }
+        System.out.println("CONSULTA paciente ativo");
+        pacienteRespository.findByIdAndAtivoTrue(dadosDTO.idPaciente())
+                .orElseThrow(() -> new ValidacaoException("Paciente está inativo!"));
+        System.out.println("Saindo consulta paciente ativo 1 ");
+
 
     }
 }

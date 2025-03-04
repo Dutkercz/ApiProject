@@ -1,6 +1,5 @@
 package com.medvoll.ApiProject.entities.consulta;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.medvoll.ApiProject.entities.enums.Especialidade;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
