@@ -4,11 +4,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.medvoll.ApiProject.entities.enums.Especialidade;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
 public record ConsultaDadosDTO(Long idMedico,
                                @NotNull Long idPaciente,
-                               @JsonFormat(pattern = "dd/MM/yyyy'T'HH:mm") @NotNull @Future LocalDateTime data,
+                               @DateTimeFormat(pattern = "yyyy/MM/dd'T'HH:mm") @NotNull @Future LocalDateTime data,
                                Especialidade especialidade) {
 }

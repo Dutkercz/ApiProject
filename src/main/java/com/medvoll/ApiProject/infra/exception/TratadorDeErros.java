@@ -36,6 +36,12 @@ public class TratadorDeErros {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
     }
 
+    @ExceptionHandler(ValidacaoException.class)
+    public ResponseEntity tratarErroServices(ValidacaoException e) {
+
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }
+
     @ExceptionHandler(AuthenticationException.class)
     public ResponseEntity tratarErroAuthentication() {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Falha na autenticação");

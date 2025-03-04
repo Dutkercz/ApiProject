@@ -13,9 +13,10 @@ public class ValidadorPacienteAtivo implements ValidadorAgendamentoDeConsultas{
     private PacienteRespository pacienteRespository;
 
     public void validar(ConsultaDadosDTO dadosDTO){
-        var paciente = pacienteRespository.getReferenceById(dadosDTO.idPaciente());
-        if (!paciente.getAtivo()){
-            throw new ValidacaoException("Paciente selecionado não está disponível")    ;
+        var paciente = pacienteRespository.findByIdAndAtivo(dadosDTO.idPaciente(), true);
+        System.out.println(paciente);
+        if(paciente.get().getAtivo() == false){
+            throw new ValidacaoException("Paciente não está ativo.");
         }
 
     }
