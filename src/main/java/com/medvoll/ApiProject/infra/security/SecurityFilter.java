@@ -1,6 +1,5 @@
 package com.medvoll.ApiProject.infra.security;
 
-import com.medvoll.ApiProject.entities.usuarios.Usuario;
 import com.medvoll.ApiProject.repositories.UsuarioRepository;
 import com.medvoll.ApiProject.services.TokenService;
 import jakarta.servlet.FilterChain;

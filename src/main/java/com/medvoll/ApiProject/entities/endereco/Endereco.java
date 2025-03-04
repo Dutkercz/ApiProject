@@ -1,8 +1,6 @@
-package com.medvoll.ApiProject.entities;
+package com.medvoll.ApiProject.entities.endereco;
 
-import com.medvoll.ApiProject.entities.DTO.EnderecoDTO;
 import jakarta.persistence.Embeddable;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

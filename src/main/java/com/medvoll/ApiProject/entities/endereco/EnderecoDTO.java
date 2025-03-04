@@ -1,4 +1,4 @@
-package com.medvoll.ApiProject.entities.DTO;
+package com.medvoll.ApiProject.entities.endereco;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

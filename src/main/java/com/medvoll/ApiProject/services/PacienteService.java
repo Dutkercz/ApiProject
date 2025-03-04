@@ -1,9 +1,9 @@
 package com.medvoll.ApiProject.services;
 
-import com.medvoll.ApiProject.entities.DTO.PacienteDTO;
-import com.medvoll.ApiProject.entities.DTO.PacienteListagemDTO;
-import com.medvoll.ApiProject.entities.DTO.PacienteUpdateDTO;
-import com.medvoll.ApiProject.entities.Paciente;
+import com.medvoll.ApiProject.entities.paciente.PacienteDTO;
+import com.medvoll.ApiProject.entities.paciente.PacienteListagemDTO;
+import com.medvoll.ApiProject.entities.paciente.PacienteUpdateDTO;
+import com.medvoll.ApiProject.entities.paciente.Paciente;
 import com.medvoll.ApiProject.repositories.PacienteRespository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;

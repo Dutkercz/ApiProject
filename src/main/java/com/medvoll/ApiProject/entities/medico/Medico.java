@@ -1,11 +1,12 @@
-package com.medvoll.ApiProject.entities;
+package com.medvoll.ApiProject.entities.medico;
 
-import com.medvoll.ApiProject.entities.DTO.MedicoUpdateDTO;
+import com.medvoll.ApiProject.entities.consulta.Consulta;
+import com.medvoll.ApiProject.entities.endereco.Endereco;
 import com.medvoll.ApiProject.entities.enums.Especialidade;
-import com.medvoll.ApiProject.entities.DTO.MedicoDTO;
 import jakarta.persistence.*;
-import jakarta.validation.Valid;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -35,6 +36,9 @@ public class Medico {
 
     @Embedded
     private Endereco endereco;
+
+    @OneToMany(mappedBy = "medico")
+    private List<Consulta> consultas;
 
     public Medico(MedicoDTO dados) {
         this.nome = dados.nome();

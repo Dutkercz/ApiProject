@@ -1,7 +1,7 @@
 package com.medvoll.ApiProject.services;
 
-import com.medvoll.ApiProject.entities.DTO.MedicoUpdateDTO;
-import com.medvoll.ApiProject.entities.Medico;
+import com.medvoll.ApiProject.entities.medico.MedicoUpdateDTO;
+import com.medvoll.ApiProject.entities.medico.Medico;
 import com.medvoll.ApiProject.repositories.MedicoRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

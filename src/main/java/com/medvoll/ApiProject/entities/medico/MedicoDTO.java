@@ -1,5 +1,6 @@
-package com.medvoll.ApiProject.entities.DTO;
+package com.medvoll.ApiProject.entities.medico;
 
+import com.medvoll.ApiProject.entities.endereco.EnderecoDTO;
 import com.medvoll.ApiProject.entities.enums.Especialidade;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;

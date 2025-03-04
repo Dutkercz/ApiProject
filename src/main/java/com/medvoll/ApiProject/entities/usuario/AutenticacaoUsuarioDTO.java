@@ -1,4 +1,4 @@
-package com.medvoll.ApiProject.entities.DTO;
+package com.medvoll.ApiProject.entities.usuario;
 
 public record AutenticacaoUsuarioDTO(String login, String senha) {
 }

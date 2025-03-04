@@ -1,5 +1,6 @@
-package com.medvoll.ApiProject.entities.DTO;
+package com.medvoll.ApiProject.entities.paciente;
 
+import com.medvoll.ApiProject.entities.endereco.EnderecoDTO;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

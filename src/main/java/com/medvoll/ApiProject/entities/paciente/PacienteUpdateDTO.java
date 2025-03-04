@@ -1,7 +1,6 @@
-package com.medvoll.ApiProject.entities.DTO;
+package com.medvoll.ApiProject.entities.paciente;
 
-import com.medvoll.ApiProject.entities.Endereco;
-import jakarta.validation.constraints.NotBlank;
+import com.medvoll.ApiProject.entities.endereco.Endereco;
 import jakarta.validation.constraints.NotNull;
 
 public record PacienteUpdateDTO(

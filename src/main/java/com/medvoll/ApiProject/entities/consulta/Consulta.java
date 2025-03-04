@@ -1,6 +1,7 @@
-package com.medvoll.ApiProject.entities;
+package com.medvoll.ApiProject.entities.consulta;
 
-import com.medvoll.ApiProject.entities.DTO.ConsultaDadosDTO;
+import com.medvoll.ApiProject.entities.medico.Medico;
+import com.medvoll.ApiProject.entities.paciente.Paciente;
 import jakarta.persistence.*;
 import lombok.*;
 

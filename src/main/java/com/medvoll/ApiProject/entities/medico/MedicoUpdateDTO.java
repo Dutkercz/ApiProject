@@ -1,8 +1,7 @@
-package com.medvoll.ApiProject.entities.DTO;
+package com.medvoll.ApiProject.entities.medico;
 
-import com.medvoll.ApiProject.entities.Endereco;
+import com.medvoll.ApiProject.entities.endereco.Endereco;
 import com.medvoll.ApiProject.entities.enums.Especialidade;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record MedicoUpdateDTO(

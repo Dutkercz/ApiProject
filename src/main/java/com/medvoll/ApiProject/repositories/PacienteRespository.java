@@ -1,6 +1,6 @@
 package com.medvoll.ApiProject.repositories;
 
-import com.medvoll.ApiProject.entities.Paciente;
+import com.medvoll.ApiProject.entities.paciente.Paciente;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

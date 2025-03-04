@@ -1,4 +1,4 @@
-package com.medvoll.ApiProject.entities.usuarios;
+package com.medvoll.ApiProject.entities.usuario;
 
 import jakarta.persistence.*;
 import lombok.*;

@@ -1,8 +1,8 @@
 package com.medvoll.ApiProject.controllers;
 
-import com.medvoll.ApiProject.entities.DTO.ConsultaDadosDTO;
-import com.medvoll.ApiProject.entities.DTO.ConsultaListagemDTO;
-import com.medvoll.ApiProject.services.ConsultaService;
+import com.medvoll.ApiProject.entities.consulta.ConsultaDadosDTO;
+import com.medvoll.ApiProject.entities.consulta.ConsultaListagemDTO;
+import com.medvoll.ApiProject.services.ConsultaAgendamentoService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class ConsultaController {
 
     @Autowired
-    private ConsultaService consultaService;
+    private ConsultaAgendamentoService consultaAgendamentoService;
 
     @PostMapping
     @Transactional
     public ResponseEntity agendarConsulta (@RequestBody @Valid ConsultaDadosDTO dadosDTO){
-        consultaService.agendarConsulta(dadosDTO);
-        return ResponseEntity.ok( new ConsultaListagemDTO(null, null, null, null));
+        var dto = consultaAgendamentoService.agendarConsulta(dadosDTO);
+        return ResponseEntity.ok(dto);
 
     }
 }

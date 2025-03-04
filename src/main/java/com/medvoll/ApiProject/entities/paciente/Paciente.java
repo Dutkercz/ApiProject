@@ -1,10 +1,12 @@
-package com.medvoll.ApiProject.entities;
+package com.medvoll.ApiProject.entities.paciente;
 
 
-import com.medvoll.ApiProject.entities.DTO.MedicoDTO;
-import com.medvoll.ApiProject.entities.DTO.PacienteDTO;
+import com.medvoll.ApiProject.entities.consulta.Consulta;
+import com.medvoll.ApiProject.entities.endereco.Endereco;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -29,6 +31,9 @@ public class Paciente {
     @Embedded
     @Setter
     private Endereco endereco;
+
+    @OneToMany(mappedBy = "paciente")
+    private List<Consulta> consultas;
 
     private Boolean ativo;
 

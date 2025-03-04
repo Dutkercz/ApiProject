@@ -1,6 +1,5 @@
-package com.medvoll.ApiProject.entities.DTO;
+package com.medvoll.ApiProject.entities.medico;
 
-import com.medvoll.ApiProject.entities.Medico;
 import com.medvoll.ApiProject.entities.enums.Especialidade;
 
 public record MedicoListagemDTO(Long id,

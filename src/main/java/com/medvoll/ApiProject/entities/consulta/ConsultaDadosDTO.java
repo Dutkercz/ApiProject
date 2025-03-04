@@ -1,4 +1,4 @@
-package com.medvoll.ApiProject.entities.DTO;
+package com.medvoll.ApiProject.entities.consulta;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.medvoll.ApiProject.entities.enums.Especialidade;
@@ -9,6 +9,6 @@ import java.time.LocalDateTime;
 
 public record ConsultaDadosDTO(Long idMedico,
                                @NotNull Long idPaciente,
-                               @JsonFormat(pattern = "dd/MM/yyyy HH:mm") @NotNull @Future LocalDateTime data,
+                               @JsonFormat(pattern = "dd/MM/yyyy'T'HH:mm") @NotNull @Future LocalDateTime data,
                                Especialidade especialidade) {
 }

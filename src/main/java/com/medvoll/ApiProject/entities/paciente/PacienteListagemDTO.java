@@ -1,7 +1,6 @@
-package com.medvoll.ApiProject.entities.DTO;
+package com.medvoll.ApiProject.entities.paciente;
 
-import com.medvoll.ApiProject.entities.Endereco;
-import com.medvoll.ApiProject.entities.Paciente;
+import com.medvoll.ApiProject.entities.endereco.Endereco;
 
 public record PacienteListagemDTO(
         String name,

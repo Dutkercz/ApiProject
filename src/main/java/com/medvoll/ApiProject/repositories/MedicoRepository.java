@@ -1,6 +1,6 @@
 package com.medvoll.ApiProject.repositories;
 
-import com.medvoll.ApiProject.entities.Medico;
+import com.medvoll.ApiProject.entities.medico.Medico;
 import com.medvoll.ApiProject.entities.enums.Especialidade;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
@@ -31,4 +31,6 @@ public interface MedicoRepository extends JpaRepository<Medico, Long> {
             limit 1
             """)
     Medico escolherMedicoAleatorioDisponivel(Especialidade especialidade, @NotNull @Future LocalDateTime data);
+
+    Boolean findAtivoById(Long idMedico);
 }
