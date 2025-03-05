@@ -14,7 +14,9 @@ public class ValidadorDataMedico implements ValidadorAgendamentoDeConsultas{
 
     public void validar(ConsultaDadosDTO dadosDTO){
         System.out.println("Consulta Data Medico");
-
+        if (dadosDTO.idMedico() == null){
+            return;
+        }
         var consultas = medicoRepository.getReferenceById(dadosDTO.idMedico()).getConsultas();
         if(consultas.isEmpty()){
             System.out.println("Saindo consulta medico data");

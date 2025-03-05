@@ -38,6 +38,7 @@ public class ConsultaAgendamentoService {
         validadores.forEach(x -> x.validar(dadosDTO));
 
         Medico medico = escolherMedico(dadosDTO);
+
         Paciente paciente = pacienteRespository.findById(dadosDTO.idPaciente()).get();
         Consulta consulta = new Consulta(null, medico, paciente, dadosDTO.data());
         consultaRepository.save(consulta);
@@ -47,10 +48,13 @@ public class ConsultaAgendamentoService {
     }
 
     private Medico escolherMedico(ConsultaDadosDTO dadosDTO) {
+        System.out.println("Escolhendo o medico");
         if(dadosDTO.idMedico() != null){
+            System.out.println("Procurando o medico selecionado");
             return medicoRepository.getReferenceById(dadosDTO.idMedico());
         }
         if (dadosDTO.especialidade() == null){
+             System.out.println("Medico e Especialidade não informadas");
             throw new ValidacaoException("Especialidade é obrigatória se o médico não for selecionado");
         }
 
