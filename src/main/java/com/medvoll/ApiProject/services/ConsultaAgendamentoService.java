@@ -38,6 +38,9 @@ public class ConsultaAgendamentoService {
         validadores.forEach(x -> x.validar(dadosDTO));
 
         Medico medico = escolherMedico(dadosDTO);
+        if (medico == null){
+            throw new ValidacaoException("Não existem médicos disponíveis");
+        }
 
         Paciente paciente = pacienteRespository.findById(dadosDTO.idPaciente()).get();
         Consulta consulta = new Consulta(null, medico, paciente, dadosDTO.data());
