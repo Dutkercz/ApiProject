@@ -27,18 +27,18 @@ public class ConsultaAgendamentoService {
     @Autowired
     private List<ValidadorAgendamentoDeConsultas> validadores;
 
-    public ConsultaListagemDTO agendarConsulta (ConsultaDadosDTO dadosDTO){
-        if (dadosDTO.idMedico() != null && !medicoRepository.existsById(dadosDTO.idMedico())){
+    public ConsultaListagemDTO agendarConsulta(ConsultaDadosDTO dadosDTO) {
+        if (dadosDTO.idMedico() != null && !medicoRepository.existsById(dadosDTO.idMedico())) {
             throw new ValidacaoException("Médico não encontrado!");
         }
-        if (!pacienteRespository.existsById(dadosDTO.idPaciente())){
+        if (!pacienteRespository.existsById(dadosDTO.idPaciente())) {
             throw new ValidacaoException("Paciente não encontrado!");
         }
 
         validadores.forEach(x -> x.validar(dadosDTO));
 
         Medico medico = escolherMedico(dadosDTO);
-        if (medico == null){
+        if (medico == null) {
             throw new ValidacaoException("Não existem médicos disponíveis");
         }
 
@@ -47,20 +47,18 @@ public class ConsultaAgendamentoService {
         consultaRepository.save(consulta);
 
         return new ConsultaListagemDTO(consulta);
-
     }
 
     private Medico escolherMedico(ConsultaDadosDTO dadosDTO) {
         System.out.println("Escolhendo o medico");
-        if(dadosDTO.idMedico() != null){
+        if (dadosDTO.idMedico() != null) {
             System.out.println("Procurando o medico selecionado");
             return medicoRepository.getReferenceById(dadosDTO.idMedico());
         }
-        if (dadosDTO.especialidade() == null){
-             System.out.println("Medico e Especialidade não informadas");
+        if (dadosDTO.especialidade() == null) {
+            System.out.println("Medico e Especialidade não informadas");
             throw new ValidacaoException("Especialidade é obrigatória se o médico não for selecionado");
         }
-
         return medicoRepository.escolherMedicoAleatorioDisponivel(dadosDTO.especialidade(), dadosDTO.data());
     }
 }

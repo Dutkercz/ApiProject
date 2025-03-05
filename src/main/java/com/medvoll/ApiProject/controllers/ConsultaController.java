@@ -3,6 +3,7 @@ package com.medvoll.ApiProject.controllers;
 import com.medvoll.ApiProject.entities.consulta.ConsultaDadosDTO;
 import com.medvoll.ApiProject.entities.consulta.ConsultaListagemDTO;
 import com.medvoll.ApiProject.services.ConsultaAgendamentoService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/consultas")
+@SecurityRequirement(name = "bearer-key")
 public class ConsultaController {
 
     @Autowired

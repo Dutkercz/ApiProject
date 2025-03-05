@@ -5,6 +5,7 @@ import com.medvoll.ApiProject.entities.paciente.PacienteListagemDTO;
 import com.medvoll.ApiProject.entities.paciente.PacienteUpdateDTO;
 import com.medvoll.ApiProject.entities.paciente.Paciente;
 import com.medvoll.ApiProject.services.PacienteService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,6 +18,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/pacientes")
+@SecurityRequirement(name = "bearer-key")
 public class PacienteController {
     @Autowired
     PacienteService pacienteService;
