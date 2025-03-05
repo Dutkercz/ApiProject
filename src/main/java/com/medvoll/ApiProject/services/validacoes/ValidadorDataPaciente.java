@@ -20,9 +20,9 @@ public class ValidadorDataPaciente implements ValidadorAgendamentoDeConsultas {
             return;
         }
 
-        var dataConsultaAtual = dadosDTO.data();
-        var ultimaConsultaPaciente = consultasPaciente.getLast().getData();
-        if (dataConsultaAtual.equals(ultimaConsultaPaciente)){
+        var dataConsultaAtual = dadosDTO.data().getDayOfYear();
+        var ultimaConsultaPaciente = consultasPaciente.getLast().getData().getDayOfYear();
+        if (dataConsultaAtual == ultimaConsultaPaciente){
             throw new ValidacaoException("Já existe uma consulta para este paciente na data selecionada");
         }
 
